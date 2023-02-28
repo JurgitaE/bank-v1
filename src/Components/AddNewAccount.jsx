@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const AddNewAcccount = () => {
+const AddNewAcccount = ({ accountListGenerator }) => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
 
@@ -14,6 +14,7 @@ const AddNewAcccount = () => {
 
     const submitHandler = e => {
         e.preventDefault();
+        accountListGenerator(name, lastName);
     };
 
     return (
