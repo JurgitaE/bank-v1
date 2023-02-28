@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import AccountList from './Components/AccountList';
 import AddNewAcccount from './Components/AddNewAccount';
 
 function App() {
@@ -13,11 +14,7 @@ function App() {
         <div className="App">
             <header className="App-header">
                 <AddNewAcccount accountListGenerator={accountListGenerator} />
-                {account.map(acc => (
-                    <li key={acc.id}>
-                        {acc.name} {acc.lastName}
-                    </li>
-                ))}
+                <AccountList accounts={account} />
             </header>
         </div>
     );
