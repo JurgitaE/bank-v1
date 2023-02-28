@@ -29,12 +29,9 @@ const AddNewAcccount = ({ accountListGenerator }) => {
             <input
                 type="text"
                 id="lastname"
+                onChange={addLastNameHandler}
             />
-            <button
-                type="submit"
-                onChange={addLastNameHandler}>
-                Add Account
-            </button>
+            <button type="submit">Add Account</button>
         </form>
     );
 };
