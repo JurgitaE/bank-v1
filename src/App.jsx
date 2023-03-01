@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import AccountList from './Components/AccountList';
+import AccountSummary from './Components/AccountSymmary';
 import AddNewAcccount from './Components/AddNewAccount';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
+                <AccountSummary accountData={account} />
                 <AddNewAcccount accountListGenerator={accountListGenerator} />
                 <AccountList
                     accounts={account}
