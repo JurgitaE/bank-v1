@@ -7,7 +7,7 @@ function App() {
     const [account, setAccount] = useState([]);
 
     const accountListGenerator = (name, lastName) => {
-        setAccount(acc => [...acc, { name, lastName, id: Math.random(), sum: 0 }]);
+        setAccount(acc => [...acc, { name, lastName, id: Math.random(), sum: 0, value: '' }]);
         console.log(account);
     };
 

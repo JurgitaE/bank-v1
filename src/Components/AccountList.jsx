@@ -1,20 +1,41 @@
-import { useState } from 'react';
-
 const AccountList = ({ accounts, setAccount }) => {
     const deleteHandler = id => {
         setAccount(prev => prev.filter(acc => acc.id !== id));
     };
 
-    const [balance, setBalance] = useState(0);
+    /* 
+     const [money, setMoney] = useState({ money: 0, id: null });
 
     const sumHandler = e => {
-        setBalance(e.target.value);
+        setMoney({ money: e.target.value, id: e.target.id });
     };
+
     const depositHandler = id => {
-        const updatedMoney = accounts.map(acc =>
-            acc.id === id && balance !== 0 ? { ...acc, sum: acc.sum + +balance } : acc
+        let updatedMoney = accounts;
+        if (+money.id === id) {
+            updatedMoney = accounts.map(acc => (acc.id === id ? { ...acc, sum: acc.sum + +money.money } : acc));
+            setAccount(updatedMoney);
+        }
+    }; */
+
+    // const [balance, setBalance] = useState({ money: 0, id: null });
+
+    const sumHandler = e => {
+        let updatedBalance = accounts.map(acc => (acc.id === +e.target.id ? { ...acc, value: e.target.value } : acc));
+        setAccount(updatedBalance);
+    };
+
+    const depositHandler = id => {
+        let updatedBalance = accounts.map(acc =>
+            acc.id === id
+                ? {
+                      ...acc,
+                      sum: acc.sum + +acc.value,
+                      value: '',
+                  }
+                : acc
         );
-        setAccount(updatedMoney);
+        setAccount(updatedBalance);
     };
 
     return (
@@ -29,7 +50,9 @@ const AccountList = ({ accounts, setAccount }) => {
                         <button onClick={() => deleteHandler(acc.id)}>Delete Acc</button>
                         <input
                             type="number"
+                            id={acc.id}
                             onChange={sumHandler}
+                            value={acc.value}
                         />
                         <button onClick={() => depositHandler(acc.id)}>Deposit</button>
                         <button>Withdraw</button>
