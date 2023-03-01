@@ -37,6 +37,13 @@
     }
 }
  */
+
+body,
+body * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .App {
     text-align: center;
 }
@@ -48,7 +55,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
     color: white;
 }
 
@@ -63,16 +69,40 @@ form {
     background: #394264;
     border-radius: 5px;
     margin-bottom: 25px;
+    padding: 20px;
 }
 
 form div {
-    display: inline-block;
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type='text'] {
+    width: 260px;
+    height: 40px;
+    margin-top: 20px auto;
+    padding-left: 10px;
+    background: #50597b;
+    color: #fff;
+    border: solid 1px #1f253d;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+input[type='text']:focus {
+    border: 1px solid #11a8ab;
+    outline: none;
+    outline-offset: 5px;
+}
+
+label {
+    padding-right: 10px;
+    width: 85px;
 }
 button {
+    padding: 15px 25px;
     display: block;
-    width: 175px;
-    line-height: 50px;
-    font-size: 16px;
     font-weight: 700;
     text-align: center;
     margin: 0 auto;
@@ -88,7 +118,10 @@ button:hover {
 
 button.add {
     background: #11a8ab;
-    margin-top: 10px;
     color: #fff;
     text-transform: uppercase;
+}
+
+button.add:hover {
+    background: #0f9295;
 }
