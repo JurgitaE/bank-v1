@@ -38,6 +38,19 @@ const AccountList = ({ accounts, setAccount }) => {
         setAccount(updatedBalance);
     };
 
+    const withdrawtHandler = id => {
+        let updatedBalance = accounts.map(acc =>
+            acc.id === id
+                ? {
+                      ...acc,
+                      sum: acc.sum - +acc.value,
+                      value: '',
+                  }
+                : acc
+        );
+        setAccount(updatedBalance);
+    };
+
     return (
         <>
             {[...accounts]
@@ -55,7 +68,7 @@ const AccountList = ({ accounts, setAccount }) => {
                             value={acc.value}
                         />
                         <button onClick={() => depositHandler(acc.id)}>Deposit</button>
-                        <button>Withdraw</button>
+                        <button onClick={() => withdrawtHandler(acc.id)}>Withdraw</button>
                     </div>
                 ))}
         </>
