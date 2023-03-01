@@ -19,19 +19,27 @@ const AddNewAcccount = ({ accountListGenerator }) => {
 
     return (
         <form onSubmit={submitHandler}>
-            <label htmlFor="name">Name</label>
-            <input
-                type="text"
-                id="name"
-                onChange={addNameHandler}
-            />
-            <label htmlFor="lastname">Last Name</label>
-            <input
-                type="text"
-                id="lastname"
-                onChange={addLastNameHandler}
-            />
-            <button type="submit">Add Account</button>
+            <div>
+                <label htmlFor="name">First Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    onChange={addNameHandler}
+                />
+            </div>
+            <div>
+                <label htmlFor="lastname">Last Name</label>
+                <input
+                    type="text"
+                    id="lastname"
+                    onChange={addLastNameHandler}
+                />
+            </div>
+            <button
+                className="add"
+                type="submit">
+                Create account
+            </button>
         </form>
     );
 };

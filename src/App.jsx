@@ -9,7 +9,6 @@ function App() {
 
     const accountListGenerator = (name, lastName) => {
         setAccount(acc => [...acc, { name, lastName, id: Math.random(), sum: 0, value: '' }]);
-        console.log(account);
     };
 
     useEffect(() => localStorage.setItem('accounts', JSON.stringify(account)), [account]);
