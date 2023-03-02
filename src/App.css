@@ -162,7 +162,7 @@ button.withdraw {
 }
 
 .accounts > * {
-    background: linear-gradient(90deg, hsl(227, 27%, 31%) 50%, hsl(215, 54%, 45%) 100%);
+    background: linear-gradient(90deg, hsl(227, 27%, 25%) 0%, hsl(227, 27%, 35%) 100%);
 }
 .accounts > div {
     padding: 10px 20px;
@@ -176,7 +176,7 @@ button.withdraw {
 }
 
 .accounts > :nth-child(2n) {
-    background: linear-gradient(90deg, hsl(215, 54%, 45%) 0%, hsl(227, 27%, 31%) 100%);
+    background: linear-gradient(90deg, hsl(215, 54%, 25%) 0%, hsl(215, 54%, 35%) 100%);
 }
 .accounts p {
     font-size: 12px;
