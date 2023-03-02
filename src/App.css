@@ -43,6 +43,7 @@ body * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-size: 12px;
 }
 .App {
     text-align: center;
@@ -70,21 +71,20 @@ span {
 form {
     background: #394264;
     border-radius: 5px;
-    margin-bottom: 25px;
     padding: 20px;
     margin-bottom: 50px;
+    text-align: right;
 }
 
 form div {
     display: block;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 input[type='text'] {
-    width: 260px;
-    height: 40px;
-    margin-top: 20px auto;
+    width: 200px;
+    height: 25px;
     padding-left: 10px;
     background: #50597b;
     color: #fff;
@@ -111,7 +111,7 @@ button {
     text-align: center;
     margin: 0 auto;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3em;
     transition: background 0.3s;
     text-decoration: none;
     color: #fff;
@@ -122,39 +122,82 @@ button:hover {
 }
 
 button.add {
+    font-size: 8px;
     background: #4fc4f6;
-    padding: 15px 25px;
+    padding: 1em 1.5em;
     text-transform: uppercase;
+    display: inline-block;
 }
 button.delete {
-    background-color: #cc324ba0;
+    background-color: hsl(350, 56%, 70%);
     font-size: 8px;
     padding: 0.5em 1em;
+    display: inline;
 }
 button.delete:hover {
-    background-color: #cc324b;
+    background-color: hsl(350, 56%, 50%);
 }
 
 button.add:hover {
     background: #35aadc;
 }
 
-/* Styling list items */
+button.deposit,
+button.withdraw {
+    font-size: 8px;
+    padding: 0.5em 1em;
+    display: inline;
+}
+.deposit {
+    background-color: #11a8ab;
+    margin-right: 0.5em;
+}
+.withdraw {
+    background: #e64c65;
+}
 
-.accounts div {
+/* Styling list items */
+.accounts {
+    max-width: 400px;
+}
+
+.accounts > * {
+    background: linear-gradient(90deg, hsl(227, 27%, 31%) 50%, hsl(215, 54%, 45%) 100%);
+}
+.accounts > div {
+    padding: 10px 20px;
+}
+.accounts > div {
     border-radius: 5px;
-    /* background: hsl(227, 27%, 31%); */
-    background: linear-gradient(90deg, hsl(227, 27%, 31%) 0%, hsl(215, 54%, 45%) 100%);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     margin-bottom: 5px;
-    height: 75px;
 }
 
 .accounts > :nth-child(2n) {
     background: linear-gradient(90deg, hsl(215, 54%, 45%) 0%, hsl(227, 27%, 31%) 100%);
 }
 .accounts p {
-    padding: 5px;
+    font-size: 12px;
+    text-align: left;
+}
+
+.info {
+    width: 50%;
+    text-align: left;
+    text-transform: capitalize;
+}
+.transfers {
+    width: 50%;
+    text-align: right;
+}
+.transfers button {
+    display: inline-block;
+}
+
+@media (min-width: 576px) {
+    .accounts {
+        width: 400px;
+    }
 }

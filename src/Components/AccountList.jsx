@@ -60,22 +60,35 @@ const AccountList = ({ accounts, setAccount }) => {
                     .filter(acc => (filter === 'empty' ? acc.sum === 0 : filter === 'positive' ? acc.sum > 0 : true))
                     .map(acc => (
                         <div key={acc.id}>
-                            <p>{acc.name}</p>
-                            <p>{acc.lastName}</p>
-                            <p>{acc.sum.toLocaleString(navigator.languages)}</p>
-                            <button
-                                className="delete"
-                                onClick={() => deleteHandler(acc.id)}>
-                                Delete Acc
-                            </button>
-                            <input
-                                type="number"
-                                id={acc.id}
-                                onChange={sumHandler}
-                                value={acc.value}
-                            />
-                            <button onClick={() => depositHandler(acc.id)}>Deposit</button>
-                            <button onClick={() => withdrawtHandler(acc.id)}>Withdraw</button>
+                            <div className="info">
+                                <p>
+                                    Owner: {acc.name} {acc.lastName}
+                                </p>
+                                <p>Balance: Є {acc.sum.toLocaleString('lt')}</p>
+                                <button
+                                    className="delete"
+                                    onClick={() => deleteHandler(acc.id)}>
+                                    Delete Acc
+                                </button>
+                            </div>
+                            <div className="transfers">
+                                <input
+                                    type="number"
+                                    id={acc.id}
+                                    onChange={sumHandler}
+                                    value={acc.value}
+                                />
+                                <button
+                                    className="deposit"
+                                    onClick={() => depositHandler(acc.id)}>
+                                    Deposit
+                                </button>
+                                <button
+                                    className="withdraw"
+                                    onClick={() => withdrawtHandler(acc.id)}>
+                                    Withdraw
+                                </button>
+                            </div>
                         </div>
                     ))}
             </section>
