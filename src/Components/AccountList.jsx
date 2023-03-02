@@ -2,16 +2,20 @@ import { useState } from 'react';
 
 const AccountList = ({ accounts, setAccount }) => {
     const [filter, setFilter] = useState('all');
-    const [modal, setModal] = useState({ class: 'hidden', msg: null });
+    const [modal, setModal] = useState({ class: 'hidden', msg: '', color: '' });
 
     const deleteHandler = id => {
         if (accounts.filter(prev => prev.id === id)[0].sum > 0) {
-            setModal({ class: 'visible', msg: 'Cannot delete account with balance above 0' });
+            setModal({
+                class: 'visible',
+                msg: 'Cannot delete account with balance above 0',
+                color: 'hsl(350, 75%, 60%)',
+            });
             setTimeout(() => {
-                setModal({ class: 'hidden', msg: '' });
+                setModal({ class: 'hidden', msg: '', color: '' });
             }, 2000);
         } else {
-            setModal({ class: 'visible', msg: 'Successfully deleted' });
+            setModal({ class: 'visible', msg: 'Successfully deleted', color: 'hsl(181, 82%, 37%)' });
             setTimeout(() => {
                 setModal({ class: 'hidden', msg: '' });
             }, 2000);
@@ -43,7 +47,11 @@ const AccountList = ({ accounts, setAccount }) => {
 
     const withdrawtHandler = id => {
         if (+accounts.filter(prev => prev.id === id)[0].value > accounts.filter(prev => prev.id === id)[0].sum) {
-            setModal({ class: 'visible', msg: 'cannot withdraw more than remaining balance' });
+            setModal({
+                class: 'visible',
+                msg: 'cannot withdraw more than remaining balance',
+                color: 'hsl(350, 75%, 60%)',
+            });
             setTimeout(() => {
                 setModal({ class: 'hidden', msg: '' });
             }, 2000);
@@ -77,10 +85,9 @@ const AccountList = ({ accounts, setAccount }) => {
                     <option value="empty">0 balance accounts</option>
                 </select>
             </section>
-            {/* modal---------------------------- */}
-            <div className={modal.class}>
-                {/* {alert(modal.msg)} */}
-                <p>{modal.msg}</p>
+            {/* ----------------modal---------------------------- */}
+            <div className={`${modal.class} modal`}>
+                <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
             </div>
             <section className="accounts">
                 {[...accounts]

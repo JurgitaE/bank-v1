@@ -150,11 +150,19 @@ button.withdraw {
     display: inline;
 }
 .deposit {
-    background-color: #11a8ab;
+    background-color: hsl(181, 82%, 37%);
     margin-right: 0.5em;
+    margin-top: 5px;
+}
+.deposit:hover {
+    background-color: hsl(181, 82%, 32%);
 }
 .withdraw {
-    background: #e64c65;
+    background: hsl(350, 75%, 60%);
+    margin-top: 5px;
+}
+.withdraw:hover {
+    background: hsl(350, 75%, 50%);
 }
 
 /* Styling list items */
@@ -224,4 +232,24 @@ select {
 }
 .visible {
     display: block;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+    background-color: hsla(0, 0%, 0%, 80%);
+}
+.modal > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    background-color: #11a8ab;
+    border-radius: 0.5em;
 }
