@@ -15,6 +15,8 @@ const AddNewAcccount = ({ accountListGenerator }) => {
     const submitHandler = e => {
         e.preventDefault();
         accountListGenerator(name, lastName);
+        setName('');
+        setLastName('');
     };
 
     return (
@@ -24,7 +26,9 @@ const AddNewAcccount = ({ accountListGenerator }) => {
                 <input
                     type="text"
                     id="name"
+                    value={name}
                     onChange={addNameHandler}
+                    required
                 />
             </div>
             <div>
@@ -32,7 +36,9 @@ const AddNewAcccount = ({ accountListGenerator }) => {
                 <input
                     type="text"
                     id="lastname"
+                    value={lastName}
                     onChange={addLastNameHandler}
+                    required
                 />
             </div>
             <button

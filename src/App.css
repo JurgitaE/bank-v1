@@ -55,8 +55,10 @@ body * {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 30px;
     color: white;
+    padding: 20px;
 }
 
 h1,
@@ -72,7 +74,6 @@ form {
     background: #394264;
     border-radius: 5px;
     padding: 20px;
-    margin-bottom: 50px;
     text-align: right;
 }
 
@@ -157,8 +158,24 @@ button.withdraw {
 }
 
 /* Styling list items */
-.accounts {
+.accounts-container {
     max-width: 400px;
+    text-align: right;
+}
+
+.filter {
+    margin-bottom: 20px;
+}
+
+.filter * {
+    font-size: 8px;
+}
+
+select {
+    background-color: #50597b;
+    color: white;
+    height: 20px;
+    outline: none;
 }
 
 .accounts > * {
@@ -197,7 +214,14 @@ button.withdraw {
 }
 
 @media (min-width: 576px) {
-    .accounts {
+    .accounts-container {
         width: 400px;
     }
+}
+
+.hidden {
+    display: none;
+}
+.visible {
+    display: block;
 }

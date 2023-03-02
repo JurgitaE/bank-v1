@@ -2,14 +2,30 @@ import { useState } from 'react';
 
 const AccountList = ({ accounts, setAccount }) => {
     const [filter, setFilter] = useState('all');
+    const [modal, setModal] = useState({ class: 'hidden', msg: null });
 
     const deleteHandler = id => {
-        setAccount(prev => prev.filter(acc => acc.id !== id));
+        if (accounts.filter(prev => prev.id === id)[0].sum > 0) {
+            setModal({ class: 'visible', msg: 'Cannot delete account with balance above 0' });
+            setTimeout(() => {
+                setModal({ class: 'hidden', msg: '' });
+            }, 2000);
+        } else {
+            setModal({ class: 'visible', msg: 'Successfully deleted' });
+            setTimeout(() => {
+                setModal({ class: 'hidden', msg: '' });
+            }, 2000);
+            setAccount(prev => prev.filter(acc => acc.id !== id));
+        }
     };
 
     const sumHandler = e => {
-        let updatedBalance = accounts.map(acc => (acc.id === +e.target.id ? { ...acc, value: e.target.value } : acc));
-        setAccount(updatedBalance);
+        if (+e.target.value >= 0 || !e.target.value) {
+            let updatedBalance = accounts.map(acc =>
+                acc.id === +e.target.id ? { ...acc, value: e.target.value } : acc
+            );
+            setAccount(updatedBalance);
+        }
     };
 
     const depositHandler = id => {
@@ -26,24 +42,31 @@ const AccountList = ({ accounts, setAccount }) => {
     };
 
     const withdrawtHandler = id => {
-        let updatedBalance = accounts.map(acc =>
-            acc.id === id
-                ? {
-                      ...acc,
-                      sum: acc.sum - +acc.value,
-                      value: '',
-                  }
-                : acc
-        );
-        setAccount(updatedBalance);
+        if (+accounts.filter(prev => prev.id === id)[0].value > accounts.filter(prev => prev.id === id)[0].sum) {
+            setModal({ class: 'visible', msg: 'cannot withdraw more than remaining balance' });
+            setTimeout(() => {
+                setModal({ class: 'hidden', msg: '' });
+            }, 2000);
+        } else {
+            let updatedBalance = accounts.map(acc =>
+                acc.id === id
+                    ? {
+                          ...acc,
+                          sum: acc.sum - +acc.value,
+                          value: '',
+                      }
+                    : acc
+            );
+            setAccount(updatedBalance);
+        }
     };
 
     const filterHandler = e => {
         setFilter(e.target.value);
     };
     return (
-        <>
-            <section>
+        <div className="accounts-container">
+            <section className="filter">
                 <label htmlFor="filter">Filter Accounts:</label>
                 <select
                     name="filter"
@@ -54,6 +77,11 @@ const AccountList = ({ accounts, setAccount }) => {
                     <option value="empty">0 balance accounts</option>
                 </select>
             </section>
+            {/* modal---------------------------- */}
+            <div className={modal.class}>
+                {/* {alert(modal.msg)} */}
+                <p>{modal.msg}</p>
+            </div>
             <section className="accounts">
                 {[...accounts]
                     .sort((a, b) => a.lastName.localeCompare(b.lastName))
@@ -64,7 +92,7 @@ const AccountList = ({ accounts, setAccount }) => {
                                 <p>
                                     Owner: {acc.name} {acc.lastName}
                                 </p>
-                                <p>Balance: Є {acc.sum.toLocaleString('lt')}</p>
+                                <p>Balance: Є {(+acc.sum.toFixed(2)).toLocaleString('lt')}</p>
                                 <button
                                     className="delete"
                                     onClick={() => deleteHandler(acc.id)}>
@@ -92,7 +120,7 @@ const AccountList = ({ accounts, setAccount }) => {
                         </div>
                     ))}
             </section>
-        </>
+        </div>
     );
 };
 
