@@ -54,7 +54,7 @@ const AccountList = ({ accounts, setAccount }) => {
                     <option value="empty">0 balance accounts</option>
                 </select>
             </section>
-            <section>
+            <section className="accounts">
                 {[...accounts]
                     .sort((a, b) => a.lastName.localeCompare(b.lastName))
                     .filter(acc => (filter === 'empty' ? acc.sum === 0 : filter === 'positive' ? acc.sum > 0 : true))
@@ -62,8 +62,12 @@ const AccountList = ({ accounts, setAccount }) => {
                         <div key={acc.id}>
                             <p>{acc.name}</p>
                             <p>{acc.lastName}</p>
-                            <p>{acc.sum}</p>
-                            <button onClick={() => deleteHandler(acc.id)}>Delete Acc</button>
+                            <p>{acc.sum.toLocaleString(navigator.languages)}</p>
+                            <button
+                                className="delete"
+                                onClick={() => deleteHandler(acc.id)}>
+                                Delete Acc
+                            </button>
                             <input
                                 type="number"
                                 id={acc.id}
