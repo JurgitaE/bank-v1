@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const AccountList = ({ accounts, setAccount }) => {
-    const [filter, setFilter] = useState('all');
+    const [filtered, setFiltered] = useState('all');
     const [modal, setModal] = useState({ class: 'hidden', msg: '', color: '' });
 
     const deleteHandler = id => {
@@ -23,7 +23,7 @@ const AccountList = ({ accounts, setAccount }) => {
         }
     };
 
-    const sumHandler = e => {
+    const inputHandler = e => {
         if (+e.target.value >= 0 || !e.target.value) {
             let updatedBalance = accounts.map(acc =>
                 acc.id === +e.target.id ? { ...acc, value: e.target.value } : acc
@@ -70,8 +70,9 @@ const AccountList = ({ accounts, setAccount }) => {
     };
 
     const filterHandler = e => {
-        setFilter(e.target.value);
+        setFiltered(e.target.value);
     };
+
     return (
         <div className="accounts-container">
             <section className="filter">
@@ -92,7 +93,9 @@ const AccountList = ({ accounts, setAccount }) => {
             <section className="accounts">
                 {[...accounts]
                     .sort((a, b) => a.lastName.localeCompare(b.lastName))
-                    .filter(acc => (filter === 'empty' ? acc.sum === 0 : filter === 'positive' ? acc.sum > 0 : true))
+                    .filter(acc =>
+                        filtered === 'empty' ? acc.sum === 0 : filtered === 'positive' ? acc.sum > 0 : true
+                    )
                     .map(acc => (
                         <div key={acc.id}>
                             <div className="info">
@@ -110,7 +113,7 @@ const AccountList = ({ accounts, setAccount }) => {
                                 <input
                                     type="number"
                                     id={acc.id}
-                                    onChange={sumHandler}
+                                    onChange={inputHandler}
                                     value={acc.value}
                                 />
                                 <button

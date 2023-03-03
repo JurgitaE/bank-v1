@@ -16,7 +16,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <AccountSummary accountData={account} />
+                <AccountSummary accounts={account} />
                 <AddNewAcccount accountListGenerator={accountListGenerator} />
                 <AccountList
                     accounts={account}
