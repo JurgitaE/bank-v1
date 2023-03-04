@@ -1,21 +1,24 @@
 import { useState } from 'react';
+import AccountsFilter from './AccountsFilter';
 
 const AccountList = ({ accounts, setAccount }) => {
+
     const [filtered, setFiltered] = useState('all');
     const [modal, setModal] = useState({ class: 'hidden', msg: '', color: '' });
 
     const deleteHandler = id => {
-        if (accounts.filter(prev => prev.id === id)[0].sum > 0) {
+
+        if (accounts.filter(acc => acc.id === id)[0].sum > 0) {
             setModal({
                 class: 'visible',
-                msg: 'Cannot delete account with balance above 0',
+                msg: 'Cannot delete account with balance above 0.',
                 color: 'hsl(350, 75%, 60%)',
             });
             setTimeout(() => {
                 setModal({ class: 'hidden', msg: '', color: '' });
             }, 2000);
         } else {
-            setModal({ class: 'visible', msg: 'Successfully deleted', color: 'hsl(181, 82%, 37%)' });
+            setModal({ class: 'visible', msg: 'Successfully deleted.', color: 'hsl(181, 82%, 37%)' });
             setTimeout(() => {
                 setModal({ class: 'hidden', msg: '' });
             }, 2000);
@@ -25,8 +28,8 @@ const AccountList = ({ accounts, setAccount }) => {
 
     const inputHandler = e => {
         if (+e.target.value >= 0 || !e.target.value) {
-            let updatedBalance = accounts.map(acc =>
-                acc.id === +e.target.id ? { ...acc, value: e.target.value } : acc
+            let updatedBalance = accounts.map(prev =>
+                prev.id === +e.target.id ? { ...prev, value: e.target.value } : prev
             );
             setAccount(updatedBalance);
         }
@@ -36,10 +39,10 @@ const AccountList = ({ accounts, setAccount }) => {
         let updatedBalance = accounts.map(acc =>
             acc.id === id
                 ? {
-                      ...acc,
-                      sum: acc.sum + +acc.value,
-                      value: '',
-                  }
+                    ...acc,
+                    sum: acc.sum + +acc.value,
+                    value: '',
+                }
                 : acc
         );
         setAccount(updatedBalance);
@@ -59,10 +62,10 @@ const AccountList = ({ accounts, setAccount }) => {
             let updatedBalance = accounts.map(acc =>
                 acc.id === id
                     ? {
-                          ...acc,
-                          sum: acc.sum - +acc.value,
-                          value: '',
-                      }
+                        ...acc,
+                        sum: acc.sum - +acc.value,
+                        value: '',
+                    }
                     : acc
             );
             setAccount(updatedBalance);
@@ -73,29 +76,20 @@ const AccountList = ({ accounts, setAccount }) => {
         setFiltered(e.target.value);
     };
 
+    const filteredAccounts = accounts.filter(acc =>
+        filtered === 'empty' ? acc.sum === 0 : filtered === 'positive' ? acc.sum > 0 : true
+    );
+
     return (
         <div className="accounts-container">
-            <section className="filter">
-                <label htmlFor="filter">Filter Accounts:</label>
-                <select
-                    name="filter"
-                    id="filter"
-                    onChange={filterHandler}>
-                    <option value="all">All accounts</option>
-                    <option value="positive">Positive Balance Accounts</option>
-                    <option value="empty">0 balance accounts</option>
-                </select>
-            </section>
+            <AccountsFilter filterHandler={filterHandler} />
             {/* ----------------modal---------------------------- */}
             <div className={`${modal.class} modal`}>
                 <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
             </div>
             <section className="accounts">
-                {[...accounts]
+                {filteredAccounts.length === 0 ? <p className='none'>No items to show.</p> : [...filteredAccounts]
                     .sort((a, b) => a.lastName.localeCompare(b.lastName))
-                    .filter(acc =>
-                        filtered === 'empty' ? acc.sum === 0 : filtered === 'positive' ? acc.sum > 0 : true
-                    )
                     .map(acc => (
                         <div key={acc.id}>
                             <div className="info">

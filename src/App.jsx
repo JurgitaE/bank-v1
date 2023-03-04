@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import AccountList from './Components/AccountList';
-import AccountSummary from './Components/AccountSymmary';
+import AccountSummary from './Components/AccountSummary';
 import AddNewAcccount from './Components/AddNewAccount';
 
 function App() {
