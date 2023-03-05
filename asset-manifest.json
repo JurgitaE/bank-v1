@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/JurgitaE/bank-v1/static/css/main.c3c5d4aa.css",
+    "main.js": "/JurgitaE/bank-v1/static/js/main.9156f57e.js",
+    "static/js/787.f12cc075.chunk.js": "/JurgitaE/bank-v1/static/js/787.f12cc075.chunk.js",
+    "index.html": "/JurgitaE/bank-v1/index.html",
+    "main.c3c5d4aa.css.map": "/JurgitaE/bank-v1/static/css/main.c3c5d4aa.css.map",
+    "main.9156f57e.js.map": "/JurgitaE/bank-v1/static/js/main.9156f57e.js.map",
+    "787.f12cc075.chunk.js.map": "/JurgitaE/bank-v1/static/js/787.f12cc075.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c3c5d4aa.css",
+    "static/js/main.9156f57e.js"
+  ]
+}
