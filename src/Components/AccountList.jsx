@@ -27,7 +27,7 @@ const AccountList = ({ accounts, setAccount }) => {
     };
 
     // Dealing with money transfers
-    
+
     const inputHandler = e => {
         if (+e.target.value >= 0 || !e.target.value) {
             let updatedBalance = accounts.map(acc =>
@@ -54,7 +54,7 @@ const AccountList = ({ accounts, setAccount }) => {
         if (+accounts.filter(acc => acc.id === id)[0].value > accounts.filter(acc => acc.id === id)[0].sum) {
             setModal({
                 class: 'visible',
-                msg: 'cannot withdraw more than remaining balance',
+                msg: 'Cannot withdraw more than remaining balance!',
                 color: 'hsl(350, 75%, 60%)',
             });
             setTimeout(() => {

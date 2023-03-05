@@ -37,13 +37,15 @@
     }
 }
  */
+html {
+    font-size: 16px;
+}
 
 body,
 body * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: 12px;
 }
 .App {
     text-align: center;
@@ -59,6 +61,14 @@ body * {
     gap: 30px;
     color: white;
     padding: 20px;
+}
+
+h2 {
+    font-size: 1.5rem !important;
+    margin-bottom: 10px;
+}
+h2 + div {
+    font-weight: bold;
 }
 
 h1,
@@ -84,15 +94,16 @@ form div {
 }
 
 input[type='text'] {
-    width: 200px;
+    width: 250px;
     height: 25px;
     padding-left: 10px;
     background: #50597b;
     color: #fff;
     border: solid 1px #1f253d;
     border-radius: 5px;
-    letter-spacing: 1px;
+    letter-spacing: 0.7px;
     text-transform: uppercase;
+    font-size: 0.9rem;
 }
 input[type='text']:focus {
     border: 1px solid #11a8ab;
@@ -123,7 +134,7 @@ button:hover {
 }
 
 button.add {
-    font-size: 8px;
+    font-size: 0.67rem;
     background: #4fc4f6;
     padding: 1em 1.5em;
     text-transform: uppercase;
@@ -131,9 +142,10 @@ button.add {
 }
 button.delete {
     background-color: hsl(350, 56%, 70%);
-    font-size: 8px;
+    font-size: 0.67rem;
     padding: 0.5em 1em;
     display: inline;
+    margin-top: 5px;
 }
 button.delete:hover {
     background-color: hsl(350, 56%, 50%);
@@ -145,7 +157,7 @@ button.add:hover {
 
 button.deposit,
 button.withdraw {
-    font-size: 8px;
+    font-size: 0.67rem;
     padding: 0.5em 1em;
     display: inline;
 }
@@ -176,7 +188,7 @@ button.withdraw {
 }
 
 .filter * {
-    font-size: 8px;
+    font-size: 0.67rem;
 }
 
 p.none {
@@ -213,7 +225,7 @@ select {
     background: linear-gradient(90deg, hsl(215, 54%, 25%) 0%, hsl(215, 54%, 35%) 100%);
 }
 .accounts p {
-    font-size: 12px;
+    font-size: 1rem;
     text-align: left;
 }
 
@@ -234,7 +246,7 @@ select {
 }
 
 input[type='number'] {
-    font-size: 10px;
+    font-size: 0.84rem;
     line-height: 1.5;
     padding: 0 4px;
     width: 120px;
@@ -267,8 +279,21 @@ input[type='number'] {
     border-radius: 0.5em;
 }
 
-@media (min-width: 420px) {
+@media (min-width: 576px) {
+    html {
+        font-size: 18px;
+    }
     .accounts-container {
-        width: 400px;
+        width: 80%;
+        max-width: 600px;
+    }
+}
+@media (min-width: 768px) {
+    html {
+        font-size: 20px;
+    }
+    .accounts-container {
+        width: 80%;
+        max-width: 600px;
     }
 }

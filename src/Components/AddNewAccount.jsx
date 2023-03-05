@@ -28,6 +28,7 @@ const AddNewAcccount = ({ accountListGenerator }) => {
                     id="name"
                     value={name}
                     onChange={addNameHandler}
+                    placeholder="Enter your name"
                     required
                 />
             </div>
@@ -37,6 +38,7 @@ const AddNewAcccount = ({ accountListGenerator }) => {
                     type="text"
                     id="lastname"
                     value={lastName}
+                    placeholder="Enter your surname"
                     onChange={addLastNameHandler}
                     required
                 />
