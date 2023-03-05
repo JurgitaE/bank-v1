@@ -5,6 +5,7 @@ const AddNewAcccount = ({ accountListGenerator }) => {
     const [lastName, setLastName] = useState('');
     const [modal, setModal] = useState({ class: 'hidden', msg: '', color: '' });
 
+    // Name and lastname validation
     function inputIsValidInput(name) {
         return name.trim() && /^[A-Za-z\s]*$/.test(name);
     }

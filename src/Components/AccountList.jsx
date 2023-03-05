@@ -31,7 +31,7 @@ const AccountList = ({ accounts, setAccount }) => {
     const inputHandler = e => {
         if (+e.target.value >= 0 || !e.target.value) {
             let updatedBalance = accounts.map(acc =>
-                acc.id === +e.target.id ? { ...acc, value: e.target.value } : acc
+                acc.id === +e.target.id ? { ...acc, value: +(+e.target.value).toFixed(2) } : acc
             );
             setAccount(updatedBalance);
         }
@@ -112,6 +112,7 @@ const AccountList = ({ accounts, setAccount }) => {
                                     id={acc.id}
                                     onChange={inputHandler}
                                     value={acc.value}
+                                    step='0.01'
                                 />
                                 <div>
                                     <button
