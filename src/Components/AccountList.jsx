@@ -20,7 +20,7 @@ const AccountList = ({ accounts, setAccount }) => {
         } else {
             setModal({ class: 'visible', msg: 'Successfully deleted.', color: 'hsl(181, 82%, 37%)' });
             setTimeout(() => {
-                setModal({ class: 'hidden', msg: '' });
+                setModal({ class: 'hidden', msg: '', color: '' });
             }, 2000);
             setAccount(prev => prev.filter(acc => acc.id !== id));
         }
@@ -58,7 +58,7 @@ const AccountList = ({ accounts, setAccount }) => {
                 color: 'hsl(350, 75%, 60%)',
             });
             setTimeout(() => {
-                setModal({ class: 'hidden', msg: '' });
+                setModal({ class: 'hidden', msg: '', color: '' });
             }, 2000);
         } else {
             let updatedBalance = accounts.map(acc =>

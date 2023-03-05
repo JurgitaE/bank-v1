@@ -3,6 +3,11 @@ import { useState } from 'react';
 const AddNewAcccount = ({ accountListGenerator }) => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [modal, setModal] = useState({ class: 'hidden', msg: '', color: '' });
+
+    function inputIsValidInput(name) {
+        return name.trim() && /^[A-Za-z\s]*$/.test(name);
+    }
 
     const addNameHandler = e => {
         setName(e.target.value);
@@ -14,9 +19,20 @@ const AddNewAcccount = ({ accountListGenerator }) => {
 
     const submitHandler = e => {
         e.preventDefault();
-        accountListGenerator(name, lastName);
-        setName('');
-        setLastName('');
+        if (inputIsValidInput(name) && inputIsValidInput(lastName)) {
+            accountListGenerator(name, lastName);
+            setName('');
+            setLastName('');
+        } else {
+            setModal({
+                class: 'visible',
+                msg: 'Only LETTERS and SPACES are allowed.',
+                color: 'hsl(350, 75%, 60%)',
+            });
+            setTimeout(() => {
+                setModal({ class: 'hidden', msg: '' });
+            }, 2500);
+        }
     };
 
     return (
@@ -48,6 +64,10 @@ const AddNewAcccount = ({ accountListGenerator }) => {
                 type="submit">
                 Create account
             </button>
+            {/* ----------------modal---------------------------- */}
+            <div className={`${modal.class} modal`}>
+                <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
+            </div>
         </form>
     );
 };
