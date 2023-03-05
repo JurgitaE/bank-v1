@@ -97,7 +97,7 @@ const AccountList = ({ accounts, setAccount }) => {
                         <div className='accounts-item' key={acc.id}>
                             <div className="info">
                                 <p>
-                                    Owner: {acc.name} {acc.lastName}
+                                    Owner: <span>{acc.name} {acc.lastName}</span>
                                 </p>
                                 <p>Balance: Є {(+acc.sum.toFixed(2)).toLocaleString('lt')}</p>
                                 <button
