@@ -8,7 +8,7 @@ function App() {
     const [account, setAccount] = useState(JSON.parse(localStorage.getItem('accounts')) || []);
 
     const accountListGenerator = (name, lastName) => {
-        setAccount(acc => [...acc, { name, lastName, id: Math.random(), sum: 0, value: '' }]);
+        setAccount(prev => [...prev, { name, lastName, id: Math.random(), sum: 0, value: '' }]);
     };
 
     useEffect(() => localStorage.setItem('accounts', JSON.stringify(account)), [account]);

@@ -26,10 +26,12 @@ const AccountList = ({ accounts, setAccount }) => {
         }
     };
 
+    // Dealing with money transfers
+    
     const inputHandler = e => {
         if (+e.target.value >= 0 || !e.target.value) {
-            let updatedBalance = accounts.map(prev =>
-                prev.id === +e.target.id ? { ...prev, value: e.target.value } : prev
+            let updatedBalance = accounts.map(acc =>
+                acc.id === +e.target.id ? { ...acc, value: e.target.value } : acc
             );
             setAccount(updatedBalance);
         }
@@ -49,7 +51,7 @@ const AccountList = ({ accounts, setAccount }) => {
     };
 
     const withdrawtHandler = id => {
-        if (+accounts.filter(prev => prev.id === id)[0].value > accounts.filter(prev => prev.id === id)[0].sum) {
+        if (+accounts.filter(acc => acc.id === id)[0].value > accounts.filter(acc => acc.id === id)[0].sum) {
             setModal({
                 class: 'visible',
                 msg: 'cannot withdraw more than remaining balance',
@@ -87,11 +89,12 @@ const AccountList = ({ accounts, setAccount }) => {
             <div className={`${modal.class} modal`}>
                 <p style={{ backgroundColor: modal.color }}>{modal.msg} </p>
             </div>
+
             <section className="accounts">
                 {filteredAccounts.length === 0 ? <p className='none'>No items to show.</p> : [...filteredAccounts]
                     .sort((a, b) => a.lastName.localeCompare(b.lastName))
                     .map(acc => (
-                        <div key={acc.id}>
+                        <div className='accounts-item' key={acc.id}>
                             <div className="info">
                                 <p>
                                     Owner: {acc.name} {acc.lastName}
@@ -110,20 +113,24 @@ const AccountList = ({ accounts, setAccount }) => {
                                     onChange={inputHandler}
                                     value={acc.value}
                                 />
-                                <button
-                                    className="deposit"
-                                    onClick={() => depositHandler(acc.id)}>
-                                    Deposit
-                                </button>
-                                <button
-                                    className="withdraw"
-                                    onClick={() => withdrawtHandler(acc.id)}>
-                                    Withdraw
-                                </button>
+                                <div>
+                                    <button
+                                        className="deposit"
+                                        onClick={() => depositHandler(acc.id)}>
+                                        Deposit
+                                    </button>
+
+                                    <button
+                                        className="withdraw"
+                                        onClick={() => withdrawtHandler(acc.id)}>
+                                        Withdraw
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))}
             </section>
+
         </div>
     );
 };
