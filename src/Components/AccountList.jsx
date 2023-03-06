@@ -2,12 +2,10 @@ import { useState } from 'react';
 import AccountsFilter from './AccountsFilter';
 
 const AccountList = ({ accounts, setAccount }) => {
-
     const [filtered, setFiltered] = useState('all');
     const [modal, setModal] = useState({ class: 'hidden', msg: '', color: '' });
 
     const deleteHandler = id => {
-
         if (accounts.filter(acc => acc.id === id)[0].sum > 0) {
             setModal({
                 class: 'visible',
@@ -41,10 +39,10 @@ const AccountList = ({ accounts, setAccount }) => {
         let updatedBalance = accounts.map(acc =>
             acc.id === id
                 ? {
-                    ...acc,
-                    sum: acc.sum + +acc.value,
-                    value: '',
-                }
+                      ...acc,
+                      sum: +(acc.sum + acc.value).toFixed(2),
+                      value: '',
+                  }
                 : acc
         );
         setAccount(updatedBalance);
@@ -64,10 +62,10 @@ const AccountList = ({ accounts, setAccount }) => {
             let updatedBalance = accounts.map(acc =>
                 acc.id === id
                     ? {
-                        ...acc,
-                        sum: acc.sum - +acc.value,
-                        value: '',
-                    }
+                          ...acc,
+                          sum: +(acc.sum - acc.value).toFixed(2),
+                          value: '',
+                      }
                     : acc
             );
             setAccount(updatedBalance);
@@ -91,47 +89,55 @@ const AccountList = ({ accounts, setAccount }) => {
             </div>
 
             <section className="accounts">
-                {filteredAccounts.length === 0 ? <p className='none'>No items to show.</p> : [...filteredAccounts]
-                    .sort((a, b) => a.lastName.localeCompare(b.lastName))
-                    .map(acc => (
-                        <div className='accounts-item' key={acc.id}>
-                            <div className="info">
-                                <p>
-                                    Owner: <span>{acc.name} {acc.lastName}</span>
-                                </p>
-                                <p>Balance: Є {(+acc.sum.toFixed(2)).toLocaleString('lt')}</p>
-                                <button
-                                    className="delete"
-                                    onClick={() => deleteHandler(acc.id)}>
-                                    Delete Acc
-                                </button>
-                            </div>
-                            <div className="transfers">
-                                <input
-                                    type="number"
-                                    id={acc.id}
-                                    onChange={inputHandler}
-                                    value={acc.value}
-                                    step='0.01'
-                                />
-                                <div>
+                {filteredAccounts.length === 0 ? (
+                    <p className="none">No items to show.</p>
+                ) : (
+                    [...filteredAccounts]
+                        .sort((a, b) => a.lastName.localeCompare(b.lastName))
+                        .map(acc => (
+                            <div
+                                className="accounts-item"
+                                key={acc.id}>
+                                <div className="info">
+                                    <p>
+                                        Owner:{' '}
+                                        <span>
+                                            {acc.name} {acc.lastName}
+                                        </span>
+                                    </p>
+                                    <p>Balance: Є {(+acc.sum.toFixed(2)).toLocaleString('lt')}</p>
                                     <button
-                                        className="deposit"
-                                        onClick={() => depositHandler(acc.id)}>
-                                        Deposit
-                                    </button>
-
-                                    <button
-                                        className="withdraw"
-                                        onClick={() => withdrawtHandler(acc.id)}>
-                                        Withdraw
+                                        className="delete"
+                                        onClick={() => deleteHandler(acc.id)}>
+                                        Delete Acc
                                     </button>
                                 </div>
-                            </div>
-                        </div>
-                    ))}
-            </section>
+                                <div className="transfers">
+                                    <input
+                                        type="number"
+                                        id={acc.id}
+                                        onChange={inputHandler}
+                                        value={acc.value}
+                                        step="0.01"
+                                    />
+                                    <div>
+                                        <button
+                                            className="deposit"
+                                            onClick={() => depositHandler(acc.id)}>
+                                            Deposit
+                                        </button>
 
+                                        <button
+                                            className="withdraw"
+                                            onClick={() => withdrawtHandler(acc.id)}>
+                                            Withdraw
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                )}
+            </section>
         </div>
     );
 };
