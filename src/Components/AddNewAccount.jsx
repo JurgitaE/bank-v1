@@ -46,6 +46,7 @@ const AddNewAcccount = ({ accountListGenerator }) => {
                     value={name}
                     onChange={addNameHandler}
                     placeholder="Enter your name"
+                    title="Must contain at least one letter."
                     required
                 />
             </div>
@@ -56,6 +57,7 @@ const AddNewAcccount = ({ accountListGenerator }) => {
                     id="lastname"
                     value={lastName}
                     placeholder="Enter your surname"
+                    title="Must contain at least one letter."
                     onChange={addLastNameHandler}
                     required
                 />
