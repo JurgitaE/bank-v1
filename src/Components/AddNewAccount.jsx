@@ -24,6 +24,14 @@ const AddNewAcccount = ({ accountListGenerator }) => {
             accountListGenerator(name, lastName);
             setName('');
             setLastName('');
+            setModal({
+                class: 'visible',
+                msg: 'New account successfully created.',
+                color: 'hsl(181, 82%, 37%)',
+            });
+            setTimeout(() => {
+                setModal({ class: 'hidden', msg: '' });
+            }, 2500);
         } else {
             setModal({
                 class: 'visible',
