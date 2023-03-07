@@ -40,7 +40,7 @@ const AccountList = ({ accounts, setAccount }) => {
             acc.id === id
                 ? {
                       ...acc,
-                      sum: +(acc.sum + acc.value).toFixed(2),
+                      sum: +(acc.sum + +acc.value).toFixed(2),
                       value: '',
                   }
                 : acc
@@ -63,7 +63,7 @@ const AccountList = ({ accounts, setAccount }) => {
                 acc.id === id
                     ? {
                           ...acc,
-                          sum: +(acc.sum - acc.value).toFixed(2),
+                          sum: +(acc.sum - +acc.value).toFixed(2),
                           value: '',
                       }
                     : acc
